@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  padding: 1rem;
+}
+
 header {
   background-color: rgb(77, 71, 71);
   padding: 1rem;
@@ -15,4 +19,28 @@ header a {
   text-decoration: none;
   color: white;
   font-weight: bold;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.product {
+  border: 1px solid #c3b8b8;
+  margin: 1rem;
+}
+
+.product img {
+  width: 100%;
+  min-width: 270px;
+  max-width: 270px;
+  height: 273px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.product-info {
+  padding: 1rem;
 }
