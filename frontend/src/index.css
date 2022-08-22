@@ -6,19 +6,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.site-container {
+  min-height: 100vh;
+}
 
 main {
-  padding: 1rem;
-}
-
-header {
-  background-color: rgb(77, 71, 71);
-  padding: 1rem;
-}
-header a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
+  flex: 1;
 }
 
 .products {
@@ -34,9 +27,9 @@ header a {
 
 .product img {
   width: 100%;
-  min-width: 270px;
-  max-width: 270px;
-  height: 273px;
+  min-width: 339px;
+  max-width: 339px;
+  height: 339px;
   object-fit: cover;
   object-position: center center;
 }

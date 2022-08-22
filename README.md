@@ -8,3 +8,4 @@
 4. Creating Get Repository
 5. Creating Routing
 6. crating HomeScreening & ProductScreening Compnents
+7. Add UseReducer Hook & React Boostrap
