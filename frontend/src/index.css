@@ -21,7 +21,7 @@ main {
 }
 
 .product-info {
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
 }
 
 .card-image-top {
@@ -36,4 +36,11 @@ main {
   background-color: #f0c040;
   border: 1px solid #f0c040;
   color: black;
+}
+
+.large-image {
+  max-width: 100%;
+}
+.d-grid {
+  margin-top: 10px;
 }

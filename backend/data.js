@@ -5,7 +5,7 @@ const data = {
       slug: 'Nike-slim-Shirts',
       category: 'Shirts',
       image:
-        'https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWVuJTIwc3VpdHxlbnwwfHwwfHw%3D&w=1000&q=80',
+        'https://looksgud.com/blog/wp-content/uploads/2016/04/multicolored-checks-casual-shirt.jpg',
       price: '120',
       countInStock: '10',
       brand: 'Nike',
@@ -17,7 +17,8 @@ const data = {
       name: 'Nike-Slim_pant',
       slug: 'Nike-slim-Pant',
       category: 'Pant',
-      image: 'https://nextluxury.com/wp-content/uploads/Man-in-chino-pants.jpg',
+      image:
+        'https://www.lundhags.com/globalassets/inriver/resources/1114122-900.jpg?width=500&height=500&f.sharpen=25',
       price: '420',
       countInStock: '20',
       brand: 'Nike',
@@ -43,9 +44,9 @@ const data = {
       slug: 'Nike-slim-watch',
       category: 'Watch',
       image:
-        'https://media.istockphoto.com/photos/smiling-businessman-holding-phone-and-looking-away-picture-id691910421?b=1&k=20&m=691910421&s=170667a&w=0&h=vtUf5eDLywSjSTkQByMfVywXxIzWnmlIXNkP_46Aes0=',
+        'https://cdn.shopify.com/s/files/1/0925/4650/products/CMALE101.png?v=1654590873&width=533',
       price: '80',
-      countInStock: '83',
+      countInStock: '23',
       brand: 'Nike',
       rating: '2.1',
       numReviews: '19',
