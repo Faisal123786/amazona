@@ -20,20 +20,20 @@ main {
   flex-wrap: wrap;
 }
 
-.product {
-  border: 1px solid #c3b8b8;
-  margin: 1rem;
+.product-info {
+  padding: 1rem;
 }
 
-.product img {
-  width: 100%;
-  min-width: 339px;
-  max-width: 339px;
-  height: 339px;
+.card-image-top {
+  height: 300px;
   object-fit: cover;
   object-position: center center;
 }
-
-.product-info {
-  padding: 1rem;
+.rating span {
+  color: #ffc000;
+}
+.btn-primary {
+  background-color: #f0c040;
+  border: 1px solid #f0c040;
+  color: black;
 }
