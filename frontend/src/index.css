@@ -44,3 +44,16 @@ main {
 .d-grid {
   margin-top: 10px;
 }
+
+.image-thumbnail {
+  height: 80px;
+}
+.CheckOutBtn {
+  width: 100%;
+  background-color: #f0c040;
+  border: 1px solid #f0c040;
+}
+
+.small-container {
+  max-width: 600px;
+}

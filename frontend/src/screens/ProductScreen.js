@@ -1,10 +1,15 @@
 import axios from 'axios';
-import React, { useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Rating from '../components/Rating';
 import Badge from 'react-bootstrap/Badge';
+import LoadingBox from '../components/LoadingBox';
+import MsgBox from '../components/MsgBox';
+import { getError } from '../Utils';
+import { Store } from '../Store';
+import { useNavigate } from 'react-router-dom';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -20,6 +25,7 @@ const reducer = (state, action) => {
 };
 
 export default function ProductScreen() {
+  let navigate = useNavigate();
   const { slug } = useParams();
   const [{ loading, product, error }, dispatch] = useReducer(reducer, {
     loading: true,
@@ -33,17 +39,33 @@ export default function ProductScreen() {
         const result = await axios.get(`/api/products/slug/${slug}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
         console.log('Error while calling the api ', err);
       }
     };
     fetchData();
   }, [slug]);
 
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart } = state;
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((y) => y._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    if (data.countInStock < quantity) {
+      window.alert('Product Not Found');
+    }
+    ctxDispatch({
+      type: 'CARD_ADD_ITEM',
+      payload: { ...product, quantity },
+    });
+    navigate('/cart', { replace: true });
+  };
+
   return loading ? (
-    <div>Loading ...</div>
+    <LoadingBox />
   ) : error ? (
-    <div>{error}</div>
+    <MsgBox variant="danger">{error}</MsgBox>
   ) : (
     <div>
       <Row>
@@ -70,7 +92,7 @@ export default function ProductScreen() {
             <ListGroup.Item>
               <Row>
                 <Col>Price:</Col>
-                <Col>{product.price}</Col>
+                <Col>${product.price}</Col>
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>
@@ -78,13 +100,9 @@ export default function ProductScreen() {
                 <Col>Status:</Col>
                 <Col>
                   {product.countInStock > 0 ? (
-                    <Badge pill bg="success">
-                      In a Stock
-                    </Badge>
+                    <Badge bg="success">In Stock</Badge>
                   ) : (
-                    <Badge pill bg="danger">
-                      Unavailable
-                    </Badge>
+                    <Badge bg="danger">Unvailable</Badge>
                   )}
                 </Col>
               </Row>
@@ -92,7 +110,9 @@ export default function ProductScreen() {
             {product.countInStock > 0 && (
               <ListGroup.Item>
                 <div className="d-grid">
-                  <Button variant="warning">Add to Cart</Button>
+                  <Button variant="warning" onClick={addToCartHandler}>
+                    Add to Cart
+                  </Button>
                 </div>
               </ListGroup.Item>
             )}

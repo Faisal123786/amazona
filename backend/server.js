@@ -1,19 +1,33 @@
 import express from 'express';
 import data from './data.js';
+import mongoose from 'mongoose';
+import 'dotenv/config';
+import seedRouter from './Routes/SeedRoutes.js';
+import productRouter from './Routes/ProductRoute.js';
+import userRouter from './Routes/UserRoute.js';
+
+mongoose
+  .connect(process.env.MONGODB_URI, { dbName: 'amazona' })
+  .then(() => {
+    console.log('Successfully Conneted to Mongo_db');
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 const app = express();
 
-app.get('/api/products', (request, response) => {
-  response.send(data.products);
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/products/slug/:slug', (request, response) => {
-  const product = data.products.find((y) => y.slug == request.params.slug);
-  if (product) {
-    response.send(product);
-  } else {
-    response.status(404).send({ message: 'Product Not Found' });
-  }
+app.use('/api/seed', seedRouter);
+
+app.use('/api/products', productRouter);
+
+app.use('/api/users', userRouter);
+
+app.use((error, req, res, next) => {
+  res.status(500).send({ message: error.message });
 });
 
 const port = 8080;
